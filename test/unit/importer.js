@@ -6,4 +6,9 @@ describe('Broccoli Importer', function() {
 
     assert.match(brocfile, /Brocfile.js$/);
   });
+
+  it('Makes paths relative', function() {
+    var tree = Importer.loadBrocfile('sub-tree');
+    assert.equal(tree, 'lib/sub-tree/assets');
+  });
 });
