@@ -1,0 +1,22 @@
+{
+  "name": "broccoli-importer",
+  "version": "0.0.1",
+  "description": "A simple tool for resolving Brocfiles defined in modules as merge-able trees",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha -t 5000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Bajix/broccoli-importer.git"
+  },
+  "keywords": [
+    "Broccoli"
+  ],
+  "author": "Thomas Sieverding (Thomas@bajix.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Bajix/broccoli-importer/issues"
+  },
+  "homepage": "https://github.com/Bajix/broccoli-importer#readme"
+}
