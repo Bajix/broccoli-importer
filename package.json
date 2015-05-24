@@ -19,5 +19,10 @@
   "bugs": {
     "url": "https://github.com/Bajix/broccoli-importer/issues"
   },
-  "homepage": "https://github.com/Bajix/broccoli-importer#readme"
+  "homepage": "https://github.com/Bajix/broccoli-importer#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "chai": "^2.3.0",
+    "mocha": "^2.2.5"
+  }
 }
