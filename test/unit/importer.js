@@ -1,4 +1,4 @@
-var Importer = require('../../index.js');
+var Importer = require('../../lib/importer');
 
 describe('Broccoli Importer', function() {
   it('Resolves paths', function() {
