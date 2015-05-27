@@ -8,7 +8,7 @@ describe('Broccoli Importer', function() {
   });
 
   it('Makes paths relative', function() {
-    var tree = Importer.loadBrocfile('sub-tree');
+    var tree = Importer.loadTree('sub-tree');
     assert.equal(tree, 'lib/sub-tree/assets');
   });
 });
