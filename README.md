@@ -8,14 +8,13 @@ From NPM:
 
 > npm install broccoli-importer --save
 
-## Import external brocfile trees
+## Import trees heuristically
 
-For packages that contain a Brocfile in their directory, simply require those modules as you would normally, and `broccoli-importer` will take care of finding the Brocfile, and exporting a modified tree with relative paths. This offers a competitive, flexible standard for managing client side assets using npm.
+For packages that don't contain a Brocfile in their directory, `broccoli-importer` will heuristically determine a suitable strategy for exporting file trees. Authors can manually assist in this by either creating an `assets` folder, or defining `directories.assets` within package.json.
 
 ### `importTree(module)`
 
 `module` *{NodeJS Module ID}*
-
 
 ```javascript
 var importTree = require('broccoli-importer'),
@@ -25,13 +24,24 @@ var trees = [
   'canjs',
   'jquery',
   'bourbon',
-  'bitters',
 ].map(importTree);
 
 module.exports = mergeTrees(trees);
 ```
 
+This should automagically work for most packages.
+
+## Import external brocfile trees
+
+For packages that contain a Brocfile in their directory, simply require those modules as you would normally, and `broccoli-importer` will take care of finding the Brocfile, and exporting a modified tree with relative paths. This offers a competitive, flexible standard for managing client side assets using npm.
+
+### `importTree(module)`
+
+`module` *{NodeJS Module ID}*
+
+
 `importTree` will resolve each module, find it's Brocfile and export a modified tree with proper relative paths.
+
 
 ## Manually import module file trees
 
@@ -53,7 +63,7 @@ The working directory when configuring funnel options is the directory containin
 
 If the module you're importing has the following file structure:
 
-```bash
+```
 ├── LICENSE.md
 ├── README.md
 ├── app
@@ -77,7 +87,7 @@ If the module you're importing has the following file structure:
 
 And your app has the following file structure:
 
-```bash
+```
 .
 ├── Brocfile.js
 ├── assets
@@ -131,7 +141,7 @@ var mergeTrees = require('broccoli-merge-trees'),
   compileSASS = require('broccoli-sass'),
   funnel = require('broccoli-funnel'),
   out = [];
-
+ 
 var bourbon = importTree('bourbon', {
    srcDir: '/', // We're importing relative to node_modules/bourbon/app/assets/stylesheets
    destDir: 'bourbon'
