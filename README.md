@@ -1,7 +1,7 @@
 Broccoli Importer
 ------
 
-A simple tool for resolving Brocfiles defined in modules as merge-able trees.
+A simple tool for exporting assets defined in modules as merge-able trees.
 
 ## Install
 From NPM:
@@ -31,21 +31,11 @@ module.exports = mergeTrees(trees);
 
 This should automagically work for most packages.
 
-## Import external brocfile trees
-
 For packages that contain a Brocfile in their directory, simply require those modules as you would normally, and `broccoli-importer` will take care of finding the Brocfile, and exporting a modified tree with relative paths. This offers a competitive, flexible standard for managing client side assets using npm.
-
-### `importTree(module)`
-
-`module` *{NodeJS Module ID}*
-
-
-`importTree` will resolve each module, find it's Brocfile and export a modified tree with proper relative paths.
-
 
 ## Manually import module file trees
 
-In a lot of cases, modules won't have defined brocfiles. In those cases, you can use the alternate call signature to pull in assets within those modules.
+In cases in which `importTree` does not export as expected, you can use the alternate call signature to manually export assets within those modules, giving much greater flexibility.
 
 ### `importTree(module, options)`
 
@@ -141,12 +131,15 @@ var mergeTrees = require('broccoli-merge-trees'),
   compileSASS = require('broccoli-sass'),
   funnel = require('broccoli-funnel'),
   out = [];
- 
+
+// This exports identically to `importTree('bourbon')`
 var bourbon = importTree('bourbon', {
    srcDir: '/', // We're importing relative to node_modules/bourbon/app/assets/stylesheets
    destDir: 'bourbon'
 });
 
+
+// This exports identically to `importTree('canjs')`, except doesn't filter out `jquery.js`
 var CanJS = importTree('canjs', {
   srcDir: 'dist/amd'
 });
@@ -168,11 +161,53 @@ var out = mergeTrees(out, {
 module.exports = funnel(out, {
   allowEmpty: true,
   exclude: [
-    /\.scss/,
-    /test/
+    /\.scss/
   ]
 });
+```
 
+The resulting file tree will look like:
+
+```
+.
+├── assets
+│   ├── user
+│   ├── admin
+│   │   ├── controller.js
+│   │   ├── main.js
+│   │   ├── map.js
+│   │   ├── styles.css
+│   │   └── views
+│   │       └── layout.stache
+│   ├── bourbon
+│   │   └── ...
+│   ├── can.js
+│   ├── can
+│   │   └── ...
+│   ├── config.js
+│   ├── jquery.js
+│   ├── router
+│   │   ├── controller.js
+│   │   └── map.js
+│   ├── test
+│   │   ├── config.js
+│   │   ├── index.html
+│   │   ├── setup.js
+│   │   └── store.js
+│   ├── user
+│   │   ├── controller.js
+│   │   ├── model.js
+│   │   ├── styles.css
+│   │   ├── test
+│   │   │   ├── fixtures.json
+│   │   │   ├── index.html
+│   │   │   ├── spec.js
+│   │   │   └── store.js
+│   │   └── views
+│   │       ├── show.stache
+│   │       ├── edit.stache
+│   │       └── index.stache
+│   └── util.js
 ```
 
 ## License
