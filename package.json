@@ -4,7 +4,6 @@
   "description": "A simple tool for resolving Brocfiles defined in modules as merge-able trees",
   "main": "index.js",
   "scripts": {
-    "install": "node link",
     "test": "./node_modules/.bin/mocha -t 5000"
   },
   "repository": {
