@@ -1,7 +1,7 @@
 {
   "name": "broccoli-importer",
   "version": "0.1.2",
-  "description": "A simple tool for resolving Brocfiles defined in modules as merge-able trees",
+  "description": "A simple tool for exporting assets defined in modules as merge-able trees.",
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/.bin/mocha -t 5000"
