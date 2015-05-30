@@ -1,6 +1,6 @@
-var resolveTree = require('./lib/resolve-tree'),
-  strategies = require('./lib/strategies'),
+var strategies = require('./lib/strategies'),
   funnel = require('broccoli-funnel'),
+  util = require('./lib/util'),
   path = require('path');
 
 function loadTree( module ) {
@@ -18,7 +18,7 @@ function createTree( module, options ) {
   var modulePath = require.resolve(module),
     moduleDir = path.dirname(modulePath);
 
-  return resolveTree(function() {
+  return util.resolveTree(function() {
     return funnel(moduleDir, options);
   }, moduleDir);
 }
