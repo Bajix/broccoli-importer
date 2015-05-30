@@ -1,8 +1,8 @@
-var Importer = require('../../lib/importer');
+var importTree = require('../../index');
 
 describe('Broccoli Importer', function() {
   it('Makes paths relative', function() {
-    var tree = Importer.loadTree('sub-tree');
-    assert.equal(tree, 'lib/sub-tree/assets');
+    var tree = importTree('./sub-tree');
+    assert.equal(tree, 'test/unit/sub-tree/assets');
   });
 });
