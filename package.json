@@ -28,7 +28,7 @@
     "bit-autocomplete": "0.0.1",
     "bit-c3": "0.0.5",
     "bourbon": "^4.2.3",
-    "broccoli": "^0.16.3",
+    "broccoli": "0.16.3",
     "chai": "^2.3.0",
     "jquery": "^2.1.4",
     "mocha": "^2.2.5",
