@@ -1,6 +1,6 @@
 {
   "name": "broccoli-importer",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "A simple tool for exporting assets defined in modules as merge-able trees.",
   "main": "index.js",
   "scripts": {
